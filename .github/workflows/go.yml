@@ -19,7 +19,7 @@ jobs:
         go-version: 1.18
 
     - name: Build
-      run: go build -v ./services/api/cmd/vinyl_catalog/main.go
+      run: cd services/api && go build -v ./...
 
     - name: Test
-      run: go test -v ./services/api/cmd/vinyl_catalog/*
+      run: cd services/api && go test -v ./...
