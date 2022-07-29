@@ -3,6 +3,9 @@
   "extends": ["config:base", ":automergeMinor"],
   "includeForks": true,
   "labels": ["dependencies"],
+  "kubernetes": {
+    "fileMatch": ["\\.yaml$"]
+  }
   "packageRules": [
     {
       "matchDatasources": ["docker"],
