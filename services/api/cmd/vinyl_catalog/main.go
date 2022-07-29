@@ -3,18 +3,18 @@ package main
 import (
 	"database/sql"
 	"fmt"
-	"github.com/go-sql-driver/mysql"
 	"log"
 	"net/http"
 	"os"
 	"time"
+
+	"github.com/go-sql-driver/mysql"
 )
 
 func main() {
 	log.Printf("Starting server at port %s \n", os.Getenv("CONTAINER_PORT"))
 
 	http.HandleFunc("/db", func(w http.ResponseWriter, r *http.Request) {
-
 		config := mysql.NewConfig()
 		config.User = os.Getenv("DB_USER_NAME")
 		config.Passwd = os.Getenv("DB_USER_PASSWORD")
