@@ -2,10 +2,11 @@ package main
 
 import (
 	"fmt"
-	"github.com/thiduzz/vinyl-catalog/cmd/vinyl_catalog/handlers"
 	"log"
 	"net/http"
 	"os"
+
+	"github.com/thiduzz/vinyl-catalog/cmd/vinyl_catalog/handlers"
 )
 
 func getEnv(key, fallback string) string {
