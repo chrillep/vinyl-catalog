@@ -1,3 +1,9 @@
+type:services:
+  - "services/**/*"
+
+type:api:
+  - "services/api/**/*"
+
 type:build:
   - ".github/**/*"
   - ".gitignore"
@@ -7,12 +13,19 @@ type:build:
   - ".npmrc"
   - ".nvmrc"
 
+type:clients:
+  - "clients/**/*"
+
+type:web:
+  - "clients/web/**/*"
+
 type:components:
   - "components/**/*"
 
 dependencies:
   - "package.json"
   - "yarn.lock"
+  - "go.mod"
 
 type:helper:
   - "utils/**/*"
