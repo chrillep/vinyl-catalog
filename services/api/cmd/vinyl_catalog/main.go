@@ -3,6 +3,7 @@ package main
 import (
 	"database/sql"
 	"fmt"
+	"github.com/thiduzz/vinyl-catalog/cmd/vinyl_catalog/handlers"
 	"log"
 	"net/http"
 	"os"
@@ -11,8 +12,16 @@ import (
 	"github.com/go-sql-driver/mysql"
 )
 
+func getEnv(key, fallback string) string {
+	if value, ok := os.LookupEnv(key); ok {
+		return value
+	}
+	return fallback
+}
+
 func main() {
-	log.Printf("Starting server at port %s \n", os.Getenv("CONTAINER_PORT"))
+	containerPort := getEnv("CONTAINER_PORT", "8080")
+	log.Print("\n" + "Starting server at port " + containerPort + "\n" + "url: http://localhost:" + containerPort + "\n")
 
 	http.HandleFunc("/db", func(w http.ResponseWriter, r *http.Request) {
 		config := mysql.NewConfig()
@@ -40,11 +49,9 @@ func main() {
 		fmt.Fprint(w, "Successfully reached AWS Database!")
 	})
 
-	http.HandleFunc("/up", func(w http.ResponseWriter, r *http.Request) {
-		fmt.Fprintf(w, "God save the Queen!")
-	})
+	http.HandleFunc("/up", handlers.UpHandler)
 
-	if err := http.ListenAndServe(fmt.Sprintf(":%s", os.Getenv("CONTAINER_PORT")), nil); err != nil {
+	if err := http.ListenAndServe(fmt.Sprintf(":%s", containerPort), nil); err != nil {
 		log.Fatal(err)
 	}
 }
