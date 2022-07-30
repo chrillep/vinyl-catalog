@@ -1,0 +1,61 @@
+type:build:
+  - ".github/**/*"
+  - ".gitignore"
+  - ".eslintrc"
+  - ".prettierrc"
+  - ".babelrc"
+  - ".npmrc"
+  - ".nvmrc"
+
+type:components:
+  - "components/**/*"
+
+dependencies:
+  - "package.json"
+  - "yarn.lock"
+
+type:helper:
+  - "utils/**/*"
+  - "tools/**/*"
+
+type:models:
+  - "models/**/*"
+
+type:hooks:
+  - "hooks/**/*"
+
+type:pages:
+  - "pages/**/*"
+
+type:public:
+  - "public/**/*"
+
+type:queries:
+  - "queries/**/*"
+
+type:server:
+  - "server/**/*"
+
+type:styles:
+  - "styles/**/*"
+
+type:tests:
+  - "tests/**/*"
+  - "cypress/**/*"
+  - "__mocks__/**/*"
+  - "cypress.json"
+  - "cypress.env.json"
+  - "jest.*.js"
+
+type:theme:
+  - "theme/**/*"
+
+type:types:
+  - "types/**/*"
+
+
+theme:docs:
+  - "README.md"
+  - "LICENSE"
+  - "CONTRIBUTING.md"
+  - "CODE_OF_CONDUCT.md"
