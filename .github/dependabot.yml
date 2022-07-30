@@ -24,6 +24,12 @@ updates:
     schedule:
       interval: "daily"
 
+  # Maintain dependencies for dockerfile
+  - package-ecosystem: "docker"
+    directory: "/services/api"
+    schedule:
+      interval: "daily"
+      
   # Maintain Terraform
   - package-ecosystem: "terraform"
     directory: "/.infrastructure"
