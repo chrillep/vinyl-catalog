@@ -3,11 +3,12 @@ package handlers
 import (
 	"database/sql"
 	"fmt"
-	"github.com/go-sql-driver/mysql"
 	"io"
 	"net/http"
 	"os"
 	"time"
+
+	"github.com/go-sql-driver/mysql"
 )
 
 func UpHandler(w http.ResponseWriter, r *http.Request) {
