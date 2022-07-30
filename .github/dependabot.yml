@@ -35,3 +35,21 @@ updates:
     directory: "/.infrastructure"
     schedule:
       interval: "daily"
+
+  # Maintain Terraform aws
+  - package-ecosystem: "terraform"
+    directory: "/.infrastructure/aws"
+    schedule:
+      interval: "daily"
+
+  # Maintain Terraform k8s
+  - package-ecosystem: "terraform"
+    directory: "/.infrastructure/k8s"
+    schedule:
+      interval: "daily"
+      
+  # Maintain Terraform scaleway
+  - package-ecosystem: "terraform"
+    directory: "/.infrastructure/scaleway"
+    schedule:
+      interval: "daily"
