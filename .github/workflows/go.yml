@@ -26,4 +26,4 @@ jobs:
     - name: Test
       run: |
         cd services/api
-        go test -v ./cmd/vinyl_catalog/*
+        go test -v ./cmd/vinyl_catalog/**/
