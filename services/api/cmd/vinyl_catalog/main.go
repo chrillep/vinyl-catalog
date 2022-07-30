@@ -3,11 +3,12 @@ package main
 import (
 	"database/sql"
 	"fmt"
-	"github.com/thiduzz/vinyl-catalog/cmd/vinyl_catalog/handlers"
 	"log"
 	"net/http"
 	"os"
 	"time"
+
+	"github.com/thiduzz/vinyl-catalog/cmd/vinyl_catalog/handlers"
 
 	"github.com/go-sql-driver/mysql"
 )
