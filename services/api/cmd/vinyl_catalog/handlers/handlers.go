@@ -16,7 +16,7 @@ func UpHandler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
 	resp := make(map[string]string)
-	resp["message"] = "I'm up!"
+	resp["status"] = "I'm up!"
 	jsonResp, err := json.Marshal(resp)
 	if err != nil {
 		log.Fatalf("Error happened in JSON marshal. Err: %s", err)
