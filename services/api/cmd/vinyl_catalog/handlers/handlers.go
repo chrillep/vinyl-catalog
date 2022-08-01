@@ -2,8 +2,9 @@ package handlers
 
 import (
 	"database/sql"
+	"encoding/json"
 	"fmt"
-	"io"
+	"log"
 	"net/http"
 	"os"
 	"time"
@@ -14,10 +15,18 @@ import (
 func UpHandler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
-	io.WriteString(w, `{"status": "I'm up!"}`)
+	resp := make(map[string]string)
+	resp["message"] = "I'm up!"
+	jsonResp, err := json.Marshal(resp)
+	if err != nil {
+		log.Fatalf("Error happened in JSON marshal. Err: %s", err)
+	}
+	w.Write(jsonResp)
+	return
 }
 
 func DbHandler(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
 	config := mysql.NewConfig()
 	config.User = os.Getenv("DB_USER_NAME")
 	config.Passwd = os.Getenv("DB_USER_PASSWORD")
@@ -29,7 +38,8 @@ func DbHandler(w http.ResponseWriter, r *http.Request) {
 	config.ParseTime = true
 	db, err := sql.Open("mysql", config.FormatDSN())
 	if err != nil {
-		fmt.Fprintf(w, "Error when opening connection: %s", err.Error())
+		w.WriteHeader(http.StatusBadGateway)
+		fmt.Fprintf(w, `{"error": "Error when opening connection: %s"}`, err.Error())
 		return
 	}
 	db.SetConnMaxLifetime(time.Minute * 3)
@@ -37,8 +47,10 @@ func DbHandler(w http.ResponseWriter, r *http.Request) {
 	db.SetMaxIdleConns(10)
 	err = db.Ping()
 	if err != nil {
-		fmt.Fprintf(w, "Error when pinging database: %s", err.Error())
+		w.WriteHeader(http.StatusBadGateway)
+		fmt.Fprintf(w, `{"error": "Error when pinging database: %s"}`, err.Error())
 		return
 	}
-	fmt.Fprint(w, "Successfully reached AWS Database!")
+	w.WriteHeader(http.StatusOK)
+	fmt.Fprint(w, `{"status": "Successfully reached AWS Database!"}`)
 }
