@@ -2,10 +2,11 @@ package main
 
 import (
 	"fmt"
-	"github.com/joho/godotenv"
 	"log"
 	"net/http"
 	"os"
+
+	"github.com/joho/godotenv"
 
 	"github.com/thiduzz/vinyl-catalog/cmd/vinyl_catalog/handlers"
 )
