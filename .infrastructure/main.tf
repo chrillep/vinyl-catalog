@@ -8,7 +8,7 @@ terraform {
 
     scaleway = {
       source  = "scaleway/scaleway"
-      version = "2.13.1"
+      version = "2.14.1"
     }
 
     helm = {
