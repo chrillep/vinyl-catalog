@@ -32,7 +32,7 @@ RUN go install ./cmd/vinyl_catalog/
 ## SECOND STAGE
 ## Builds an alpine container and configure
 ## SSL to connect to our Database
-FROM alpine:3.17.3 AS prod-build
+FROM alpine:3.18.0 AS prod-build
 
 ## Install openssl-dev and ca-certificate
 RUN apk add --update --no-cache ca-certificates openssl-dev
