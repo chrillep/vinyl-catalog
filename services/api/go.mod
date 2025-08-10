@@ -1,9 +1,11 @@
 module github.com/thiduzz/vinyl-catalog
 
-go 1.19
+go 1.21.0
+
+toolchain go1.24.6
 
 require (
-	github.com/go-sql-driver/mysql v1.8.1
+	github.com/go-sql-driver/mysql v1.9.3
 	github.com/joho/godotenv v1.5.1
 )
 
