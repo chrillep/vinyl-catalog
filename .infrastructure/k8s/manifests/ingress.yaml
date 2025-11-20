@@ -3,19 +3,19 @@ apiVersion: networking.k8s.io/v1
 kind: IngressClass
 metadata:
   labels:
-## A recommended label for distinguishing parts of your application
-## Read more here: https://kubernetes.io/docs/concepts/overview/working-with-objects/common-labels/
+    ## A recommended label for distinguishing parts of your application
+    ## Read more here: https://kubernetes.io/docs/concepts/overview/working-with-objects/common-labels/
     app.kubernetes.io/component: controller
-## This name is used to link the IngressClass with an Ingress
-## by the usage of ingressNameClass defined in the Ingress object
+  ## This name is used to link the IngressClass with an Ingress
+  ## by the usage of ingressNameClass defined in the Ingress object
   name: nginx
   annotations:
-## Ensures that any new Ingresses without any ingressClassName
-## specified will automatically use this IngressClass
+    ## Ensures that any new Ingresses without any ingressClassName
+    ## specified will automatically use this IngressClass
     ingressclass.kubernetes.io/is-default-class: "true"
 spec:
-## Specifies the name of the controller we want to use for the
-## NGINX Ingress Controller this is the default name
+  ## Specifies the name of the controller we want to use for the
+  ## NGINX Ingress Controller this is the default name
   controller: k8s.io/ingress-nginx
 ---
 apiVersion: networking.k8s.io/v1
@@ -23,21 +23,21 @@ kind: Ingress
 metadata:
   name: nginx-ingress
   annotations:
-## Here we are telling that any request coming to this ingress will
-## reach the Service without the Prefix
+    ## Here we are telling that any request coming to this ingress will
+    ## reach the Service without the Prefix
     nginx.ingress.kubernetes.io/rewrite-target: /$2
 spec:
-## Name of the IngressClass we are going to use
+  ## Name of the IngressClass we are going to use
   ingressClassName: nginx
   rules:
-## Here we apply the routing rules for our initial ingress version
+    ## Here we apply the routing rules for our initial ingress version
     - http:
         paths:
-## Every request coming into our Cluster IP will be redirected internally
-## to the Service with the name "backend" on port 5678 and because of the
-## nginx.ingress.kubernetes.io/rewrite-target defined above, it will
-## automatically remove the "/backend" from the path.
-## ie. 51.158.57.177/backend -> 127.0.0.0:5678
+          ## Every request coming into our Cluster IP will be redirected internally
+          ## to the Service with the name "backend" on port 5678 and because of the
+          ## nginx.ingress.kubernetes.io/rewrite-target defined above, it will
+          ## automatically remove the "/backend" from the path.
+          ## ie. 51.158.57.177/backend -> 127.0.0.0:5678
           - path: /backend(/|$)(.*)
             pathType: Prefix
             backend:
