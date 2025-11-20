@@ -14,7 +14,7 @@
   },
   "devDependencies": {
     "@types/node": "18.19.130",
-    "@types/react": "18.3.24",
+    "@types/react": "18.3.27",
     "autoprefixer": "10.4.21",
     "eslint": "8.57.1",
     "eslint-config-next": "12.3.7",
