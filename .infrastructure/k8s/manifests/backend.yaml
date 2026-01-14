@@ -5,14 +5,14 @@ metadata:
   labels:
     app: backend
 spec:
-## This service will be of type NodePort
+  ## This service will be of type NodePort
   type: NodePort
   ports:
     - port: 8080
       protocol: TCP
   selector:
-## Select any PODS (not deployments) with the label
-## "pod-name" with the value "backend"
+    ## Select any PODS (not deployments) with the label
+    ## "pod-name" with the value "backend"
     pod-name: backend
 ---
 apiVersion: apps/v1
@@ -22,19 +22,19 @@ metadata:
   labels:
     app: backend
 spec:
-## Tells we are going to spawn 3 pods for this deployment
+  ## Tells we are going to spawn 3 pods for this deployment
   replicas: 3
-## Defines how the deployment will know which pods to manage
-## in our case, all pods with the label "pod-name"
-## with value "backend"
+  ## Defines how the deployment will know which pods to manage
+  ## in our case, all pods with the label "pod-name"
+  ## with value "backend"
   selector:
     matchLabels:
       pod-name: backend
   template:
     metadata:
       labels:
-## Defines the labels of the pods that this
-## deployment will create
+        ## Defines the labels of the pods that this
+        ## deployment will create
         pod-name: backend
     spec:
       imagePullSecrets:
