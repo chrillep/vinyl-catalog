@@ -2,7 +2,7 @@ module github.com/thiduzz/vinyl-catalog
 
 go 1.24.0
 
-toolchain go1.27.1
+toolchain go1.27.3
 
 require (
 	github.com/go-sql-driver/mysql v1.10.1
